@@ -10,12 +10,20 @@ correctDate = dateService.getCorrectDate()
 contableDate = scrapperContable.scrape_date()
 promedioDate = scrapperPromedio.scrape_date()
 
+# Función para verificar si las fechas son correctas en la plataforma SBS.
+# Compara las fechas correctas con las fechas en las variables contableDate y promedioDate.
+# Si son iguales, devuelve True; de lo contrario, imprime un mensaje de error y devuelve False.
 def verifyIfCorrectDates():
     if correctDate == contableDate and correctDate == promedioDate:
         return True
     else:
+        print("incorrect dates on SBS platform")
         return False
 
+# Función para actualizar celdas en una hoja de cálculo.
+# Toma un número de fila, y una función de raspado (scrapeFunc) como argumentos.
+# Extrae un valor usando la función de raspado, lo convierte a float y actualiza la celda en la columna 9.
+# También actualiza la celda en la columna 3 con el valor de la variable correctDate.
 def updateCells(row, scrapeFunc):
         column_index = 9
         cell_value = float(scrapeFunc())
